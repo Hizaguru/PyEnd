@@ -8,4 +8,4 @@ def index():
 
 @main.route('/table')
 def profile():
-    return 'Profile'
+    return render_template('table.html')
