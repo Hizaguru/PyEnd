@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-UPLOAD_FORM = "index.html"
+UPLOAD_FORM = "upload.html"
 main = Blueprint('main', __name__)
 
 
