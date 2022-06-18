@@ -1,6 +1,6 @@
-projectKey=py-end
+projectKey=PyEnd
 serverUrl=http://localhost:9000
 serverVersion=9.5.0.56709
-dashboardUrl=http://localhost:9000/dashboard?id=py-end
-ceTaskId=AYFeSnHa8q_Mcl-7Ju4p
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYFeSnHa8q_Mcl-7Ju4p
+dashboardUrl=http://localhost:9000/dashboard?id=PyEnd
+ceTaskId=AYF4EIMu9diNd4B1S59u
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYF4EIMu9diNd4B1S59u
