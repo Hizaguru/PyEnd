@@ -1,4 +1,3 @@
-
 def draw_headings():
     headings = ("ID", "Image Name", "Caption", "Size", "")
     return headings
