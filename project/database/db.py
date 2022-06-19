@@ -90,4 +90,3 @@ def insert_image(name, photo, caption, size):
             print("MySQL connection is closed")
 
 
-connect_to_database()
