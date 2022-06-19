@@ -6,7 +6,7 @@ import os
 from flask_wtf.csrf import CSRFProtect
 UPLOAD_FORM = "upload_form.html"
 LOGIN_FORM = "http://localhost:5001"
-UPLOAD_FOLDER = 'uploadedFiles'
+UPLOAD_FOLDER = 'project/uploadedFiles'
 ALLOWED_EXTENSIONS = {'jpg', 'png'}
 
 # init SQLAlchemy so we can use it later in our models
@@ -18,6 +18,7 @@ def create_app():
     app = Flask(__name__, template_folder='templates')
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     load_dotenv()
     CSRFProtect(app)
     assets = Environment(app)
