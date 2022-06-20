@@ -2,7 +2,8 @@ from flask import Flask, current_app, render_template, request, flash, redirect,
 import time
 from werkzeug.utils import secure_filename
 import os
-from project.database.db import insert_image, connect_to_database, read_query
+from project.database.db import insert_image, connect_to_database, read_query, db_query
+import logging
 UPLOAD_FORM = "upload.html"
 ALLOWED_EXTENSIONS = {'jpg', 'png'}
 UPLOAD_FOLDER = 'project/uploadedFiles'
@@ -78,3 +79,14 @@ def profile():
             time.sleep(5)
             return redirect("/")
 
+@main.route('/delete/<int:id>')
+def delete_image(id):
+    connection = connect_to_database()
+    delete_image = "DELETE FROM Image where Id=" + str(id)
+    print(delete_image)
+    try:
+        db_query(connection, delete_image)
+        return redirect('/table')
+    except:
+        logging.exception('Error while deleting database object.')
+        raise
