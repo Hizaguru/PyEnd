@@ -69,7 +69,7 @@ def insert_image(name, photo, caption, size):
 
         cursor = connection.cursor()
         sql_query = """ INSERT INTO Image
-                          (Filename, Photo, Caption, FileSize) VALUES (%s,%s,%s,%s)"""
+                          (Filename, Photo, Caption, Size) VALUES (%s,%s,%s,%s)"""
 
         image = convert_to_binary(photo)
         print(image)

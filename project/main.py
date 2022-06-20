@@ -2,7 +2,7 @@ from flask import Flask, current_app, render_template, request, flash, redirect,
 import time
 from werkzeug.utils import secure_filename
 import os
-from project.database.db import insert_image
+from project.database.db import insert_image, connect_to_database, read_query
 UPLOAD_FORM = "upload.html"
 ALLOWED_EXTENSIONS = {'jpg', 'png'}
 UPLOAD_FOLDER = 'project/uploadedFiles'
@@ -14,12 +14,23 @@ main = Blueprint('main', __name__)
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
+           
+           
+def table_headings():
+    headings = ("ID", "Image Name", "Caption", "Size", "")
+    return headings
 
 @main.route('/')
 def index():
-    print("Hello")
     return render_template(UPLOAD_FORM)
+
+@main.route('/table', methods=['GET', 'POST'])
+def list_images():
+    connection = connect_to_database()
+    select_images = "SELECT Id, Filename, Caption, Size FROM Image"
+    read_query(connection, select_images)
+
+    return render_template("table.html", headings=table_headings(), data=read_query(connection, select_images))
 
 
 @main.route('/uploader', methods=['POST', 'GET'])
@@ -66,3 +77,4 @@ def profile():
             flash("File uploaded successfully", "info")
             time.sleep(5)
             return redirect("/")
+
