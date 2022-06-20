@@ -51,6 +51,20 @@ def db_query(connection, query):
     except Error as e:
         print(f"The error '{e} occurred")
 
+def if_user_exists(connection, username, password):
+    print("1")
+    cursor = connection.cursor()
+    result = None
+    print("2")
+    query = 'SELECT * FROM accounts WHERE username  = %s AND password = %s', (username, password)
+    print(query)
+    try:
+        cursor.execute(*query)
+        result = cursor.fetchone()
+        return result
+    except Error as e:
+        print(f"The error {e} occurred")
+        
 
 def convert_to_binary(filename):
     # Convert digital data to binary format
@@ -76,7 +90,7 @@ def insert_image(name, photo, caption, size):
 
         # Convert data into tuple format
         insert_blob_tuple = (name, image, caption, size)
-        result = cursor.execute(sql_query, insert_blob_tuple)
+        result = cursor.execute(*sql_query, insert_blob_tuple)
         connection.commit()
         print("Image and file inserted successfully", result)
 
@@ -89,4 +103,7 @@ def insert_image(name, photo, caption, size):
             connection.close()
             print("MySQL connection is closed")
 
-
+connection = connect_to_database()
+hello = if_user_exists(connection, "test", "test")
+print(hello)
+if_user_exists(connect_to_database(),"test", "test")    

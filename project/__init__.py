@@ -19,6 +19,8 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:rootd@127.0.0.1/image_gallery'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     load_dotenv()
     CSRFProtect(app)
     assets = Environment(app)

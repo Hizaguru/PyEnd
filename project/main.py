@@ -21,7 +21,7 @@ def table_headings():
     headings = ("ID", "Image Name", "Caption", "Size", "")
     return headings
 
-@main.route('/')
+@main.route('/upload')
 def index():
     return render_template(UPLOAD_FORM)
 
