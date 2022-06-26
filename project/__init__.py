@@ -6,19 +6,25 @@ import os
 from flask_wtf.csrf import CSRFProtect
 UPLOAD_FORM = "upload_form.html"
 LOGIN_FORM = "http://localhost:5001"
-UPLOAD_FOLDER = 'project/uploadedFiles'
+UPLOAD_FOLDER = 'project/main/uploadedFiles'
 ALLOWED_EXTENSIONS = {'jpg', 'png'}
 
 # init SQLAlchemy so we can use it later in our models
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 def create_app():
-    app = Flask(__name__, template_folder='templates')
+    app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+        'SQLALCHEMY_DATABASE_URI')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     load_dotenv()
     CSRFProtect(app)
     assets = Environment(app)
@@ -33,11 +39,11 @@ def create_app():
     assets.register('scss_all', scss)
 
     # blueprint for auth routes in our app
-    from .auth import auth as auth_blueprint
+    from .auth.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
     # blueprint for non-auth parts of app
-    from .main import main as main_blueprint
+    from .main.main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     return app

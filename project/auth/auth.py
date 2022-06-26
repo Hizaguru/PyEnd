@@ -3,14 +3,20 @@ from flask import Blueprint
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login')
+# GET request   methods for authentication  with    MySQLdb backend backend.
+@auth.route('/')
 def login():
-    return 'Login'
+    return "Login"
 
 
 @auth.route('/signup')
 def signup():
     return 'Signup'
+
+
+@auth.route('/register')
+def register():
+    return 'Register'
 
 
 @auth.route('/logout')

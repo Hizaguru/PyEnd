@@ -1,4 +1,5 @@
-from flask import Flask, current_app, render_template, request, flash, redirect, Blueprint
+from tempfile import template
+from flask import current_app, render_template, request, flash, redirect, Blueprint
 import time
 from werkzeug.utils import secure_filename
 import os
@@ -6,24 +7,25 @@ from project.database.db import insert_image, connect_to_database, read_query, d
 import logging
 UPLOAD_FORM = "upload.html"
 ALLOWED_EXTENSIONS = {'jpg', 'png'}
-UPLOAD_FOLDER = 'project/uploadedFiles'
+UPLOAD_FOLDER = 'uploadedFiles'
 
-main = Blueprint('main', __name__)
-
+main = Blueprint('main', __name__, template_folder='templates')
 
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-           
-           
+
+
 def table_headings():
     headings = ("ID", "Image Name", "Caption", "Size", "")
     return headings
 
-@main.route('/')
+
+@main.route('/upload')
 def index():
     return render_template(UPLOAD_FORM)
+
 
 @main.route('/table', methods=['GET', 'POST'])
 def list_images():
@@ -63,7 +65,8 @@ def profile():
             print("4")
             filename = secure_filename(f.filename)
             caption = request.form.get("caption")
-            image_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+            image_folder = os.path.join(
+                current_app.config['UPLOAD_FOLDER'], filename)
             f.save(image_folder)
             # Calculate the size of the photo
             file = request.files['file']
@@ -78,6 +81,7 @@ def profile():
             flash("File uploaded successfully", "info")
             time.sleep(5)
             return redirect("/")
+
 
 @main.route('/delete/<int:id>')
 def delete_image(id):
