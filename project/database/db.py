@@ -90,7 +90,7 @@ def insert_image(name, photo, caption, size):
 
         # Convert data into tuple format
         insert_blob_tuple = (name, image, caption, size)
-        result = cursor.execute(*sql_query, insert_blob_tuple)
+        result = cursor.execute(sql_query, insert_blob_tuple)
         connection.commit()
         print("Image and file inserted successfully", result)
 
