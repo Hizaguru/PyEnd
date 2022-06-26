@@ -19,7 +19,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:rootd@127.0.0.1/image_gallery'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     load_dotenv()
     CSRFProtect(app)
@@ -35,7 +35,7 @@ def create_app():
     assets.register('scss_all', scss)
 
     # blueprint for auth routes in our app
-    from .auth import auth as auth_blueprint
+    from .auth.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
     # blueprint for non-auth parts of app
