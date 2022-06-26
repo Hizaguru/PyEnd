@@ -1,6 +1,5 @@
 from flask import Blueprint
-
-auth = Blueprint('auth', __name__)
+from .import auth
 
 
 # GET request   methods for authentication  with    MySQLdb backend backend.

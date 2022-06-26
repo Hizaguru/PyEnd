@@ -1,15 +1,12 @@
-from tempfile import template
-from flask import current_app, render_template, request, flash, redirect, Blueprint
+from flask import current_app, render_template, request, flash, redirect
 import time
 from werkzeug.utils import secure_filename
 import os
 from project.database.db import insert_image, connect_to_database, read_query, db_query
-import logging
+from .import main
 UPLOAD_FORM = "upload.html"
 ALLOWED_EXTENSIONS = {'jpg', 'png'}
 UPLOAD_FOLDER = 'uploadedFiles'
-
-main = Blueprint('main', __name__, template_folder='templates')
 
 
 def allowed_file(filename):
@@ -50,19 +47,16 @@ def profile():
         f = request.files['file']
 
         if f.filename == '':
-            print("2")
             flash("No file selected", "Warning")
             time.sleep(5)
             return redirect(UPLOAD_FORM)
         elif not allowed_file(f.filename):
-            print("3")
             flash("File not allowed")
             time.sleep(5)
             return redirect('/')
 
         # If allowed inserts the filename, blob, caption and size of the file into the database.
         if f and allowed_file(f.filename):
-            print("4")
             filename = secure_filename(f.filename)
             caption = request.form.get("caption")
             image_folder = os.path.join(
@@ -77,10 +71,9 @@ def profile():
             print(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
 
             insert_image(filename, image_folder, caption, file_length)
-            print(caption)
             flash("File uploaded successfully", "info")
             time.sleep(5)
-            return redirect("/")
+            return redirect("/upload")
 
 
 @main.route('/delete/<int:id>')
