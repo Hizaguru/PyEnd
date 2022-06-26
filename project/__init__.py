@@ -4,24 +4,11 @@ from flask_assets import Environment, Bundle
 from dotenv import load_dotenv
 import os
 from flask_wtf.csrf import CSRFProtect
-UPLOAD_FORM = "upload_form.html"
-LOGIN_FORM = "http://localhost:5001"
-UPLOAD_FOLDER = 'project/main/uploadedFiles'
-ALLOWED_EXTENSIONS = {'jpg', 'png'}
-
-# init SQLAlchemy so we can use it later in our models
-
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
         'SQLALCHEMY_DATABASE_URI')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
