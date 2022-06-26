@@ -3,10 +3,8 @@ import time
 from werkzeug.utils import secure_filename
 import os
 from project.database.db import insert_image, connect_to_database, read_query, db_query
-from .import main
-UPLOAD_FORM = "upload.html"
-ALLOWED_EXTENSIONS = {'jpg', 'png'}
-UPLOAD_FOLDER = 'uploadedFiles'
+from .import main, UPLOAD_FOLDER, UPLOAD_FORM, ALLOWED_EXTENSIONS
+
 
 
 def allowed_file(filename):

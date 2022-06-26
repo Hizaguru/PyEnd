@@ -9,7 +9,6 @@ from flask_wtf.csrf import CSRFProtect
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
         'SQLALCHEMY_DATABASE_URI')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
