@@ -1,15 +1,25 @@
-from imghdr import tests
 import unittest
-from project.database.db import connect_to_database, if_user_exists
-
-class TestSum(unittest.TestCase):
-
-    def test_if_user_exist(self):
-        connection = connect_to_database()
-        user_exist = if_user_exists(connection, "tests", "test")
-        self.assertEqual(user_exist, True)
+from unittest import mock
+from database.db import insert_image
 
 
+class Test_insert_rows(unittest.TestCase):
+
+    def fix_dbc(self):
+        dbc = mock.MagicMock(spec=['cursor'])
+        dbc.autocommit = True
+        return dbc
+
+    def fix_rows(self):
+        rows = [{'id':1, 'name':'John'}, 
+                {'id':2, 'name':'Jane'},]
+        return rows
+
+    def test_insert_rows_calls_cursor_method(self):
+        dbc = self.fix_dbc()
+        rows = self.fix_rows()
+        insert_image(rows, 'users', dbc)
+        self.assertTrue(dbc.cursor.called)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(argv=['', '-v'])
