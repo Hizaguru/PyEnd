@@ -50,8 +50,10 @@ def db_query(connection, query):
         print("Query executed successfully")
     except Error as e:
         print(f"The error '{e} occurred")
+        
+        
 
-def if_user_exists(connection, username, password):
+def user_exist(connection, username, password):
     print("1")
     cursor = connection.cursor()
     result = None
