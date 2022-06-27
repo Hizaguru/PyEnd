@@ -105,7 +105,7 @@ def insert_image(name, photo, caption, size):
             connection.close()
             print("MySQL connection is closed")
 
-# connection = connect_to_database()
-# hello = if_user_exists(connection, "test", "test")
-# print(hello)
-# if_user_exists(connect_to_database(),"test", "test")    
+connection = connect_to_database()
+hello = user_exist(connection, "test", "test")
+print(hello)
+ 
