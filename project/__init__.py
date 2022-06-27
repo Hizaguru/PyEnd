@@ -8,10 +8,11 @@ from flask_wtf.csrf import CSRFProtect
 
 def create_app():
     app = Flask(__name__)
-
+    UPLOAD_FOLDER = 'project/uploadedFiles'
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
         'SQLALCHEMY_DATABASE_URI')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     load_dotenv()
     CSRFProtect(app)
     assets = Environment(app)

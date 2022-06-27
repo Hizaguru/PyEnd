@@ -50,15 +50,14 @@ def db_query(connection, query):
         print("Query executed successfully")
     except Error as e:
         print(f"The error '{e} occurred")
-        
-        
 
-def user_exist(connection, username, password):
-    print("1")
+
+def user_exist(connection, query, username, password):
+    print("method: user_exist")
     cursor = connection.cursor()
     result = None
-    print("2")
-    query = 'SELECT * FROM accounts WHERE username  = %s AND password = %s', (username, password)
+    print("method: user_exist cursor = connection.cursor")
+
     print(query)
     try:
         cursor.execute(*query)
@@ -66,20 +65,23 @@ def user_exist(connection, username, password):
         return result
     except Error as e:
         print(f"The error {e} occurred")
-        
 
-def convert_to_binary(filename):
+
+# Converts the image into binary
+def convert_image_to_binary(filename):
     # Convert digital data to binary format
     with open(filename, 'rb') as file:
         binary_data = file.read()
     return binary_data
 
 
-def insert_image(name, photo, caption, size):
+# Inserts image to the database as a  blob
+def insert_image_to_database(name, photo, caption, size):
     print("Inserting BLOB into the table")
     try:
         connection = mysql.connector.connect(host=os.getenv('HOST'),
-                                             database=os.getenv('DATABASE_NAME'),
+                                             database=os.getenv(
+                                                 'DATABASE_NAME'),
                                              user=os.getenv('DATABASE_USER'),
                                              password=os.getenv('DATABASE_PASSWORD'))
 
@@ -87,7 +89,7 @@ def insert_image(name, photo, caption, size):
         sql_query = """ INSERT INTO Image
                           (Filename, Photo, Caption, Size) VALUES (%s,%s,%s,%s)"""
 
-        image = convert_to_binary(photo)
+        image = convert_image_to_binary(photo)
         print(image)
 
         # Convert data into tuple format
@@ -104,8 +106,3 @@ def insert_image(name, photo, caption, size):
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
-
-connection = connect_to_database()
-hello = user_exist(connection, "test", "test")
-print(hello)
- 

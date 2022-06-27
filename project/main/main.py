@@ -2,8 +2,8 @@ from flask import current_app, render_template, request, flash, redirect
 import time
 from werkzeug.utils import secure_filename
 import os
-from project.database.db import insert_image, connect_to_database, read_query, db_query
-from .import main, UPLOAD_FOLDER, UPLOAD_FORM, ALLOWED_EXTENSIONS
+from project.database.db import insert_image_to_database, connect_to_database, read_query, db_query
+from .import main, UPLOAD_FORM, ALLOWED_EXTENSIONS
 
 
 
@@ -68,7 +68,7 @@ def profile():
 
             print(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
 
-            insert_image(filename, image_folder, caption, file_length)
+            insert_image_to_database(filename, image_folder, caption, file_length)
             flash("File uploaded successfully", "info")
             time.sleep(5)
             return redirect("/upload")
