@@ -1,10 +1,10 @@
-from flask import current_app, render_template, request, flash, redirect
+import logging
+from flask import current_app, render_template, request, flash, redirect, Response
 import time
 from werkzeug.utils import secure_filename
 import os
 from project.database.db import insert_image_to_database, connect_to_database, read_query, db_query
 from .import main, UPLOAD_FORM, ALLOWED_EXTENSIONS
-
 
 
 def allowed_file(filename):
@@ -40,7 +40,7 @@ def profile():
             print("no file")
             flash('No file part')
             time.sleep(2)
-            return redirect('/')
+            return Response("{'a':'b'}", status=201, mimetype='application/json')
 
         f = request.files['file']
 
@@ -68,7 +68,8 @@ def profile():
 
             print(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
 
-            insert_image_to_database(filename, image_folder, caption, file_length)
+            insert_image_to_database(
+                filename, image_folder, caption, file_length)
             flash("File uploaded successfully", "info")
             time.sleep(5)
             return redirect("/upload")
