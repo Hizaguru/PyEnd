@@ -1,3 +1,7 @@
 venv
 sonarqube
 frontend/node_modules/
+project/uploadedFiles/
+project/__pycache__
+project/auth/__pycache__
+.env
