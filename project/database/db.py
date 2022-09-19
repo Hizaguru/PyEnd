@@ -75,7 +75,7 @@ def convert_image_to_binary(filename):
     return binary_data
 
 
-# Inserts image to the database as a  blob
+# Inserts image to the database as a blob
 def insert_image_to_database(name, photo, caption, size):
     print("Inserting BLOB into the table")
     try:

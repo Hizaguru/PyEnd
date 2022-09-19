@@ -1,4 +1,4 @@
-CREATE DATABASE [IF NOT EXISTS] image_gallery;
+CREATE DATABASE image_gallery;
 
 Use image_gallery;
 
