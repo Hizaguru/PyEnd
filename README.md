@@ -21,7 +21,7 @@ Before getting started, ensure that you have the following installed on your com
 2. Navigate to the project directory:
 
    ```
-   cd flask-image-upload-admin-panel
+   cd project
    ```
 
 3. Create a `.env` file and paste the contents from the `env.data` file. Add your own credentials to the first two lines of the `.env` file.
@@ -63,14 +63,3 @@ flask run
 This command will start the Flask development server, and the admin panel will be accessible at [http://localhost:5000](http://localhost:5000).
 
 Please make sure that the MySQL database is running before starting the project.
-
-## Contributing
-
-Contributions to the Flask Image Upload Admin Panel are welcome! If you encounter any issues or have suggestions for improvements, please feel free to create an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-```
-
-Please copy and paste this Markdown-formatted content into your `README.md` file, and it should render correctly when viewed on platforms that support Markdown formatting.
