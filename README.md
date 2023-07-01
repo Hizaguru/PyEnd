@@ -1,21 +1,21 @@
-Flask Image Upload Admin Panel
+#Flask Image Upload Admin Panel
 
 This Flask project is an admin panel for uploading images to a database. Follow the instructions below to easily set it up for personal use:
 Prerequisites
 
 Before getting started, ensure that you have the following installed on your computer:
 
-    Python 3
-    pip3
-    MySQLdb
+        Python 3
+        pip3
+        MySQLdb
 
 Installation
 
     Clone the repository to your local machine:
 
     bash
-
-git clone https://github.com/your-username/flask-image-upload-admin-panel.git
+    
+    git clone https://github.com/your-username/flask-image-upload-admin-panel.git
 
 Navigate to the project directory:
 
