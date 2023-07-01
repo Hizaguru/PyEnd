@@ -1,60 +1,76 @@
-Flask Image Upload Admin Panel
+# Flask Image Upload Admin Panel
 
-This Flask project is an admin panel for uploading images to a database. Follow the instructions below to easily set it up for personal use:
-Prerequisites
+This Flask project is an admin panel for uploading images to a database. Follow the instructions below to easily set it up for personal use.
+
+## Prerequisites
 
 Before getting started, ensure that you have the following installed on your computer:
 
-    Python 3
-    pip3
-    MySQLdb
+- Python 3
+- pip3
+- MySQLdb
 
-Installation
+## Installation
 
-    Clone the repository to your local machine:
+1. Clone the repository to your local machine:
 
-    bash
+   ```
+   git clone https://github.com/your-username/flask-image-upload-admin-panel.git
+   ```
 
-git clone https://github.com/your-username/flask-image-upload-admin-panel.git
+2. Navigate to the project directory:
 
-Navigate to the project directory:
+   ```
+   cd flask-image-upload-admin-panel
+   ```
 
-arduino
+3. Create a `.env` file and paste the contents from the `env.data` file. Add your own credentials to the first two lines of the `.env` file.
 
-cd flask-image-upload-admin-panel
+4. Create a virtual environment in the `PyEnd/` directory:
 
-Create a .env file and paste the contents from the env.data file. Add your own credentials to the first two lines of the .env file.
+   ```
+   python3 -m venv venv
+   ```
 
-Create a virtual environment in the PyEnd/ directory:
+5. Activate the virtual environment:
 
-python3 -m venv venv
+   ```
+   source venv/bin/activate
+   ```
 
-Activate the virtual environment:
+6. Install the project dependencies:
 
-bash
+   ```
+   pip3 install -r requirements.txt
+   ```
 
-source venv/bin/activate
+## Database Setup
 
-Install the project dependencies:
+1. Ensure that your MySQL database is running.
 
-    pip3 install -r requirements.txt
+2. Open the `database.sql` file and copy each line.
 
-Database Setup
+3. Paste the copied lines into your MySQL database to create the necessary tables.
 
-    Ensure that your MySQL database is running.
+## Running the Project
 
-    Open the database.sql file and copy each line.
+To run the Flask project, execute the following command within the `PyEnd/` folder:
 
-    Paste the copied lines into your MySQL database to create the necessary tables.
-
-Running the Project
-
-To run the Flask project, execute the following command within the PyEnd/ folder:
-
-arduino
-
+```
 flask run
+```
 
-This command will start the Flask development server, and the admin panel will be accessible at http://localhost:5000.
+This command will start the Flask development server, and the admin panel will be accessible at [http://localhost:5000](http://localhost:5000).
 
 Please make sure that the MySQL database is running before starting the project.
+
+## Contributing
+
+Contributions to the Flask Image Upload Admin Panel are welcome! If you encounter any issues or have suggestions for improvements, please feel free to create an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+```
+
+Please copy and paste this Markdown-formatted content into your `README.md` file, and it should render correctly when viewed on platforms that support Markdown formatting.
